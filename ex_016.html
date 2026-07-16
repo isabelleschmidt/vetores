@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex 16</title>
+</head>
+<body>
+    <h1>Loja Eletrônica</h1><br>
+    Nome do produto: <input type="text" id="ipt_nome"><br>
+    Preço de compra: <input type="number" id="ipt_preco"><br>
+    <button onclick="cadastrar()">Cadastrar</button><br>
+    <button onclick="relatorio()">Relatório de estoque</button><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    let vtNomes = [];
+    let vtPrecos = [];
+    function cadastrar(){
+        vtNomes.push(ipt_nome.value);
+        vtPrecos.push(Number(ipt_preco.value));
+        ipt_nome.value = "";
+        ipt_preco.value = "";
+    }
+    function relatorio(){
+        let msg = `Total de produtos: ${vtNomes.length}<br><br>`;
+        for (let i = 0; i < vtNomes.length; i++) {
+        let venda = vtPrecos[i] * 1.25;
+         msg += `Produto ${i + 1}: ${vtNomes[i]}<br>`;
+         msg += `Preço de compra: R$${vtPrecos[i].toFixed(2)}. Vender por R$${venda.toFixed(2)}<br><br>`;
+    }
+   let idxCaro = 0;
+   let idxBarato = 0;
+   let somaCompra = 0;
+   let somaVenda = 0;
+        for (let i = 0; i < vtPrecos.length; i++) {
+         if (vtPrecos[i] > vtPrecos[idxCaro]) idxCaro = i;
+         if (vtPrecos[i] < vtPrecos[idxBarato]) idxBarato = i;
+        somaCompra += vtPrecos[i];
+        somaVenda += vtPrecos[i] * 1.25;
+     }
+     let media = somaVenda / vtPrecos.length;
+        msg += `Produto mais caro: ${vtNomes[idxCaro]}<br>`;
+        msg += `Produto mais barato: ${vtNomes[idxBarato]}<br>`;
+        msg += `Soma dos preços de compra: R$${somaCompra.toFixed(2)}<br>`;
+        msg += `Média de preço de venda: R$${media.toFixed(2)}`;
+        div_msg.innerHTML =  msg;
+    }
+</script>

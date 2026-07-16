@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>ex 06</title></head>
+<body>
+    <h1>Filmes</h1><br>
+    Filme: <input type="text" id="ipt_filme">
+    <button onclick="cadastrar()">Cadastrar</button><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    let vtFilmes = [];
+    function cadastrar(){
+        vtFilmes.push(ipt_filme.value);
+        ipt_filme.value = "";
+        mostrar();
+    }
+    function mostrar(){
+        div_msg.innerHTML = "";
+        for (let i = 0; i < vtFilmes.length; i++) {
+            div_msg.innerHTML += `${vtFilmes[i]}<br>`;
+        }
+    }
+</script>

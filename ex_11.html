@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex 11</title>
+</head>
+<body>
+    <h1>Estoque</h1><br>
+    Preço: <input type="number" id="ipt_preco">
+    <button onclick="cadastrar()">Cadastrar</button><br>
+    <button onclick="atualizar()">Atualizar Estoque</button><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    let vtPrecos = [];
+    function cadastrar(){
+        vtPrecos.push(Number(ipt_preco.value));
+        ipt_preco.value = "";
+    }
+    function atualizar(){
+    let html = "";
+    let soma = 0;
+      for (let i = vtPrecos.length - 1; i >= 0; i--) {
+       html += `R$ ${vtPrecos[i].toFixed(2)}<br>`;
+   }
+  for (let i = 0; i < vtPrecos.length; i++) {
+  soma += vtPrecos[i];
+ }
+html += `<br>Você tem ${vtPrecos.length} produtos cadastrados em estoque<br>`;
+html += `Seu estoque vale R$${soma.toFixed(2)}`;
+div_msg.innerHTML = html;
+    }
+</script>

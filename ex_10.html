@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex 10</title>
+</head>
+<body>
+    <h1>Ônibus</h1><br>
+    Linha: <input type="text" id="ipt_linha">
+    <button onclick="gravar()">Gravar busão</button><br>
+    <div id="div_linhas"></div><br>
+    Pesquisar linha: <input type="text" id="ipt_pesquisa">
+    <button onclick="pesquisar()">Pesquisar</button><br>
+    <div id="div_resultado"></div>
+</body>
+</html>
+<script>
+    let vtLinhas = [];
+    function gravar(){
+        vtLinhas.push(ipt_linha.value);
+        ipt_linha.value = "";
+        mostrarLinhas();
+    }
+    function mostrarLinhas(){
+        div_linhas.innerHTML = "";
+        for (let i = vtLinhas.length - 1; i >= 0; i--) {
+            div_linhas.innerHTML += `${vtLinhas[i]}<br>`;
+        }
+    }
+    function pesquisar(){
+        let busca = ipt_pesquisa.value;
+        let posicoes = [];
+        for (let i = 0; i < vtLinhas.length; i++) {
+            if (vtLinhas[i].toLowerCase() == busca.toLowerCase()) {
+                posicoes.push(i + 1);
+            }
+        }
+        if (posicoes.length == 0) {
+            div_resultado.innerHTML = "Você nunca pegou essa linha";
+        } else {
+            div_resultado.innerHTML = `Você já pegou essa linha ${posicoes.length} vezes, nessa ordem: ${posicoes.join(", ")}`;
+        }
+    }
+</script>

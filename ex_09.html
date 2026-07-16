@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex 09</title>
+</head>
+<body>
+    <h1>Projetos</h1><br>
+    Projeto: <input type="text" id="ipt_projeto">
+    <button onclick="registrar()">Registrar projeto</button><br>
+    <div id="div_nivel"></div><br>
+    <button onclick="mostrarProjetos()">Mostrar Projetos</button><br>
+    <div id="div_lista"></div>
+</body>
+</html>
+<script>
+    let vtProjetos = [];
+    function registrar(){
+    vtProjetos.push(ipt_projeto.value);
+    ipt_projeto.value = "";
+    atualizarNivel();
+    }
+    function atualizarNivel(){
+    let total = vtProjetos.length;
+    let nivel = "";
+    if (total <= 4) {
+    nivel = "Júnior";
+    } else if (total <= 12) {
+      nivel = "Pleno";
+    } else {
+      nivel = "Sênior";
+    }
+   div_nivel.innerHTML = `Você já fez ${total} projetos. Por isso você é um profissional ${nivel}`;
+    }
+    function mostrarProjetos(){
+    div_lista.innerHTML = "";
+    for (let i = vtProjetos.length - 1; i >= 0; i--) {
+    div_lista.innerHTML += `${vtProjetos[i]}<br>`;
+        }
+    }
+</script>

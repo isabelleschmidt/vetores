@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex 04</title>
+</head>
+<body>
+    <h1>Filmes</h1><br>
+    Insira seus filmes favoritos em ordem: <input type="text" id="ipt_filmes"><br>
+    <button onclick="cadastar()">Cadastrar filme</button><br>
+    <button onclick="ver()">Ver favoritos</button><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+
+    let vtFilmes = []
+    function cadastar(){
+        let filmes = ipt_filmes.value;
+        vtFilmes.push(filmes);
+        ipt_filmes.value = ``;
+    }
+    function ver(){
+        div_msg.innerHTML = `Total: ${vtFilmes.length}<br>
+        O filme que mais gosta é ${vtFilmes[0]}. <br> 
+        O filme que menos gosta é ${vtFilmes[vtFilmes.length - 1]}`;
+    }
+</script>

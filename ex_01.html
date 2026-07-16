@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex 01</title>
+</head>
+<body>
+    <h1>Lista de frutas</h1>
+    Digite uma fruta: <input id="ipt_fruta"><br>
+    <button onclick="pesquisar()">Pesquisar</button><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    let vtFrutas = ['banana', 'amora', 'cereja']
+    function pesquisar(){
+        let frutaEscolhida = ipt_fruta.value;
+        let achou = false 
+        for (let i = 0; i < vtFrutas.length; i++) {
+            if (vtFrutas[i].toLowerCase() == frutaEscolhida.toLowerCase()) {
+                achou = true;
+            }
+            if (achou) {
+                div_msg.innerHTML = `A fruta ${frutaEscolhida} existe na lista.`
+            } else {
+                div_msg.innerHTML = `A fruta ${frutaEscolhida} não existe na lista.`
+
+            }
+        }
+
+    }
+</script>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex 14</title>
+</head>
+<body>
+    <h1>Números</h1><br>
+Insira um número: <input type="number" id="ipt_numero">
+    <button onclick="analisar()">Analisar histórico</button><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    let vtNumeros = [];
+    function analisar(){
+    vtNumeros.push(Number(ipt_numero.value));
+    ipt_numero.value = "";
+   let msg = "";
+   for (let i = 0; i < vtNumeros.length; i++) {
+   msg += `${i + 1}º Número: ${vtNumeros[i]}<br>`;
+}
+ let maior = vtNumeros[0];
+ let menor = vtNumeros[0];
+for (let i = 0; i < vtNumeros.length; i++) {
+       if (vtNumeros[i] > maior) maior = vtNumeros[i];
+         if (vtNumeros[i] < menor) menor = vtNumeros[i];
+}
+  msg += `<br>Maior: ${maior}<br>Menor: ${menor}`;
+     div_msg.innerHTML = msg;
+    }
+</script>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex 05</title>
+</head>
+<body>
+    <h1>Fimes favoritos</h1><br>
+    Insira seus filmes favoritos: <input type="text" id="ipt_filmes"><br>
+    <button onclick="cadastrar()">Cadastrar filme</button><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script> 
+    let vtFilmes = []
+    function cadastrar(){
+        let filmes = ipt_filmes.value;
+        vtFilmes.push(filmes);
+        ipt_filmes.value = ``;
+        painel();
+    }
+    function painel(){
+        let terceiro = ``;
+        if (vtFilmes.lenght < 3) {
+            terceiro = "Ainda não existe";
+        } else {
+            terceiro = vtFilmes[2];
+        }
+        div_msg.innerHTML = `Total de filmes favoritos: ${vtFilmes.lenght}<br>
+        Seu favorito: ${vtFilmes[0]}<br>
+        Seu último favorito: ${vtFilmes[vtFilmes.length -1]}`
+        }
+</script>

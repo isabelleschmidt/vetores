@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex 12</title>
+</head>
+<body>
+    <h1>Família</h1><br>
+    Nome do filho: <input type="text" id="ipt_filho">
+    <button onclick="cadastrar()">Cadastrar</button><br>
+    <button onclick="atualizarFamilia()">Atualizar Família</button><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    let vtFilhos = [];
+    function cadastrar(){
+        let nome = ipt_filho.value;
+        let existe = false;
+
+        for (let i = 0; i < vtFilhos.length; i++) {
+            if (vtFilhos[i].toLowerCase() == nome.toLowerCase()) {
+        existe = true;
+    }
+
+        }
+        if (existe) {
+            alert("Não pode mais de 1 filho com o mesmo nome!");
+        } else {
+            vtFilhos.push(nome);
+            ipt_filho.value = "";
+        }
+    }
+    function atualizarFamilia(){
+        let filhos = vtFilhos.length;
+        let custo = filhos * 3000;
+        let custosPublica = filhos * 1500;
+        div_msg.innerHTML = `Você tem ${filhos} filhos<br>Seu custo mensal será aproximadamente R$${custo} se colocá-los em escola particular ou R$${custosPublica} se eles estudarem em escola pública`;
+    }
+</script>

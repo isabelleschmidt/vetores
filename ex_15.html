@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex 15</title>
+</head>
+<body>
+    <h1>Loja Eletrônica</h1><br>
+    Nome do produto: <input type="text" id="ipt_nome"><br>
+    Preço de compra: <input type="number" id="ipt_preco"><br>
+    <button onclick="cadastrar()">Cadastrar</button><br>
+    <button onclick="relatorio()">Relatório de estoque</button><br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    let vtNomes = [];
+    let vtPrecos = [];
+    function cadastrar(){
+    vtNomes.push(ipt_nome.value);
+    vtPrecos.push(Number(ipt_preco.value));
+     ipt_nome.value = "";
+     ipt_preco.value = "";
+    }
+    function relatorio(){
+        let msg = `Total de produtos: ${vtNomes.length}<br><br>`;
+        for (let i = 0; i < vtNomes.length; i++) {
+            let venda = vtPrecos[i] * 1.25;
+            msg += `Produto ${i + 1}: ${vtNomes[i]}<br>`;
+            msg += `Preço de compra: R$${vtPrecos[i].toFixed(2)}. Vender por R$${venda.toFixed(2)}<br><br>`;
+        }
+        div_msg.innerHTML = msg;
+    }
+</script>

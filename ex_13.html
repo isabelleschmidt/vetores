@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex 13</title>
+</head>
+<body>
+    <h1>Campanha do Time</h1><br>
+    <select id="sel_resultado">
+        <option value="">Indique o resultado</option>
+        <option value="V">Vitória</option>
+        <option value="E">Empate</option>
+        <option value="D">Derrota</option>
+    </select>
+    <button onclick="registrarJogo()">Registrar jogo</button><br>
+    <div id="div_painel"></div><br>
+    Indique qual jogo deseja saber o resultado: <input type="number" id="ipt_jogo" oninput="consultarJogo()"><br>
+    <div id="div_consulta"></div>
+</body>
+</html>
+<script>
+    let vtResultados = [];
+    function registrarJogo(){
+    vtResultados.push(sel_resultado.value);
+    atualizarPainel();
+    }
+    function atualizarPainel(){
+        let totalVitorias = 0;
+        let totalEmpates = 0;
+        let totalDerrotas = 0;
+ for (let i = 0; i < vtResultados.length; i++) {
+    if (vtResultados[i] == "V") {
+         totalVitorias++;
+    } else if (vtResultados[i] == "E") {
+      totalEmpates++;
+        } else {
+        totalDerrotas++;
+ }
+}
+  let pontuacaoTotal = (totalVitorias * 3) + (totalEmpates * 1);
+  let pontuacaoMaxima = vtResultados.length * 3;
+  let aproveitamento = (pontuacaoMaxima > 0) ? ((pontuacaoTotal / pontuacaoMaxima) * 100).toFixed(1) : 0;
+    div_painel.innerHTML = `O time teve: ${totalVitorias} vitórias, ${totalEmpates} empates, ${totalDerrotas} derrotas<br>Pontuação total: ${pontuacaoTotal} pontos<br>Aproveitamento: ${aproveitamento}%`;
+    }
+  function consultarJogo(){
+        let numeroJogo = Number(ipt_jogo.value);
+        if (numeroJogo < 1 || numeroJogo > vtResultados.length) {
+        div_consulta.innerHTML = `Não foi cadastrado um ${numeroJogo}º jogo`;
+        } else {
+    let resultadoJogo = vtResultados[numeroJogo - 1];
+    let textoResultado = (resultadoJogo == "V") ? "Ganhou" : (resultadoJogo == "E") ? "Empatou" : "Perdeu";
+    div_consulta.innerHTML = `No ${numeroJogo}º jogo, o time ${textoResultado}`;
+        }
+    }
+</script>
